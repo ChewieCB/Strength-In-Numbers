@@ -29,7 +29,8 @@ var lost_target_sounds = [
 ]
 
 # VIEWCONE/RAYCASTING
-export (int) var DETECT_RADIUS = 64
+export (int) var DETECT_RADIUS = 128
+export (int) var NEAR_RADIUS = 32
 export (int) var FOV = 90
 export (int) var view_angle setget set_view_angle
 var view_cone_points setget set_view_cone_points
@@ -85,6 +86,8 @@ func _process(_delta):
 	var raycast_angle = rad2deg(raycast.cast_to.angle())
 	view_angle = 90 - raycast_angle
 	
+	update()
+	
 	# State Machine
 	if velocity == Vector2.ZERO:
 		anim_tree["parameters/Idle/blend_position"] = anim_tree["parameters/Move/blend_position"]
@@ -107,6 +110,8 @@ const GREEN = Color(0, 1.0, 0, 0.4)
 var draw_color = GREEN
 
 func _draw():
+	# DEBUG - draw the near radius that the beast can rotate to face a human in
+	draw_circle(Vector2.ZERO, NEAR_RADIUS, Color(0.6, 0, 0.7, 0.4))
 	if view_cone_points:
 		draw_polygon(view_cone_points, PoolColorArray([draw_color]))
 
@@ -150,8 +155,27 @@ func set_view_angle(value):
 
 func set_view_cone_points(value):
 	view_cone_points = value
-	# FIXME - this shape isn't drawing correctly
 	var new_view_shape = ConvexPolygonShape2D.new()
 	new_view_shape.points = (view_cone_points)
-	# TODO - add this detection area in and re-enable this code
-#	$DetectionArea/CollisionShape.shape = new_view_shape
+	$DetectionArea/CollisionShape.shape = new_view_shape
+
+
+# SIGNAL FUNCS
+
+
+func _on_DetectionArea_body_entered(body):
+	if body is Human:
+		draw_color = RED
+	#	if ai.state_machine.current_state != $Controller/StateMachine/States/ChaseState:
+	#		$PlayerSFX.play_alert()
+	#		yield($PlayerSFX, "finished")
+	#	ai.state_machine.set_state($Controller/StateMachine/States/ChaseState)
+
+
+func _on_DetectionArea_body_exited(body):
+	if body is Human:
+		draw_color = GREEN
+	#	player_last_seen_position = body.global_position.snapped(tilemap.cell_size)
+	#	$PlayerSFX.play_lost()
+	#	yield($PlayerSFX, "finished")
+	#	ai.state_machine.set_state($Controller/StateMachine/States/SearchState)
