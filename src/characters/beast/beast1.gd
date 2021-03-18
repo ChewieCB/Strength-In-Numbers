@@ -13,7 +13,6 @@ var moodle
 var initialized = false
 # SCENT TRAIL PATHFINDING VARS
 var scent_trail = []
-var space_state
 # AUDIO FILES
 # TODO - abstract these wav files to a resource so we can batch assign/import them
 #
@@ -29,26 +28,44 @@ var lost_target_sounds = [
 	preload("res://assets/characters/beast/sounds/lost_target/beast_lost_target_1.wav")
 ]
 
+# VIEWCONE/RAYCASTING
+export (int) var DETECT_RADIUS = 64
+export (int) var FOV = 90
 export (int) var view_angle setget set_view_angle
 var view_cone_points setget set_view_cone_points
 var view_cone_points_colors
+var space_state
 
-onready var raycast = $RayCast
+onready var raycast = $RayCast2D
+
+# TILEMAP
+var tilemap
+var walls
 
 
 func _ready():
 	randomize()
+	
 	# Animation Tree
 	anim_tree = $AnimationTree
 	anim_tree.active = true
 	anim_tree["parameters/playback"].start("Idle")
 	#
+	
 	moodle = $Moodle
 	$Moodle/AnimationPlayer.play("blank")
 	#
+	
 	self.add_to_group("beasts")
+	
 	# Finite State Machine
 	state_machine = $StateMachine
+	
+	# Tilemaps
+	tilemap = get_node("../../TileMap")
+	if tilemap:
+		walls = tilemap.get_node("Walls")
+	
 	# Make sure everything is loaded before setting the initial state
 	initialized = true
 	assert(initialized)
@@ -79,7 +96,7 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	space_state = get_world_2d().direct_space_state
-	var view_cone = gen_circle_arc_poly(tilemap.cell_size/2, DETECT_RADIUS, view_angle - FOV/2, view_angle + FOV/2)
+	var view_cone = gen_circle_arc_poly(Vector2.ZERO, DETECT_RADIUS, view_angle - FOV/2, view_angle + FOV/2)
 	view_cone_points = view_cone[0]
 	view_cone_points_colors = view_cone[1]
 
@@ -108,7 +125,7 @@ func gen_circle_arc_poly(center, radius, angle_from, angle_to):
 		var angle_point = angle_from + i * (angle_to - angle_from) / nb_points
 		var _point = center + Vector2(cos(deg2rad(90 - angle_point)), sin(deg2rad(90 - angle_point))) * radius
 		# Check if the point collides with anything
-		var result = space_state.intersect_ray(to_global(center), to_global(_point), [self, player], 1)
+		var result = space_state.intersect_ray(to_global(center), to_global(_point), [self], 1)
 		if result:
 			# Add the point where the ray collides
 			points_arc.push_back(to_local(result.position))
@@ -136,4 +153,5 @@ func set_view_cone_points(value):
 	# FIXME - this shape isn't drawing correctly
 	var new_view_shape = ConvexPolygonShape2D.new()
 	new_view_shape.points = (view_cone_points)
-	$DetectionArea/CollisionShape.shape = new_view_shape
+	# TODO - add this detection area in and re-enable this code
+#	$DetectionArea/CollisionShape.shape = new_view_shape
