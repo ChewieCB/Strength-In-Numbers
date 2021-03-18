@@ -995,6 +995,7 @@ states/Idle/position = Vector2( 173, -36 )
 states/Move/node = SubResource( 42 )
 states/Move/position = Vector2( 374, -36 )
 transitions = [ "Idle", "Move", SubResource( 43 ), "Move", "Idle", SubResource( 44 ), "Curious", "AlertStart", SubResource( 45 ), "AlertStart", "Curious", SubResource( 46 ), "Idle", "CuriousStart", SubResource( 47 ), "CuriousStart", "Idle", SubResource( 48 ), "Curious", "CuriousEnd", SubResource( 49 ), "Move", "CuriousStart", SubResource( 50 ), "CuriousStart", "Curious", SubResource( 51 ), "CuriousEnd", "Idle", SubResource( 52 ), "CuriousEnd", "Move", SubResource( 53 ), "AlertStart", "Chase", SubResource( 54 ), "Chase", "AlertEnd", SubResource( 55 ), "AlertEnd", "CuriousStart", SubResource( 56 ) ]
+start_node = "Idle"
 graph_offset = Vector2( -58, -80 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=58]
@@ -1016,7 +1017,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 flip_h = true
 

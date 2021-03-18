@@ -582,6 +582,7 @@ states/Idle/position = Vector2( 163, 117 )
 states/Move/node = SubResource( 37 )
 states/Move/position = Vector2( 357, 98 )
 transitions = [ "Idle", "Move", SubResource( 38 ), "Move", "Idle", SubResource( 39 ) ]
+start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 

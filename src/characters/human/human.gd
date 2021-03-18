@@ -43,7 +43,8 @@ func _ready():
 	# Animation Tree
 	anim_tree = $AnimationTree
 	anim_tree.active = true
-	anim_tree["parameters/playback"].start("Idle")
+	var anim_playback = anim_tree["parameters/playback"]
+	anim_playback.start("Idle")
 	# Selector
 	selector = $Sprites/Selector
 	selector_sprite_hover = load("res://assets/ui/selector/selector0.png")

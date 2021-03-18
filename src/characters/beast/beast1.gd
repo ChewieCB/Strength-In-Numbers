@@ -6,7 +6,7 @@ const scent_scene = preload("res://src/characters/human/Scent.tscn")
 # STATE MACHINE
 var state_machine
 var anim_tree
-var anim_state_machine
+var anim_playback
 # MOODLE UI
 var moodle
 # INIT FLAG
@@ -49,7 +49,8 @@ func _ready():
 	# Animation Tree
 	anim_tree = $AnimationTree
 	anim_tree.active = true
-	anim_tree["parameters/playback"].start("Idle")
+	anim_playback = anim_tree["parameters/playback"]
+	anim_playback.start("Idle")
 	#
 	
 	moodle = $Moodle
@@ -75,7 +76,6 @@ func _ready():
 
 func _process(_delta):
 	# Set animations
-	anim_state_machine = anim_tree["parameters/playback"]
 	var anim_direction = direction.normalized()
 	# Invert the y direction since the axis are different between the anim tree
 	# and the physics engine
@@ -88,10 +88,10 @@ func _process(_delta):
 	# State Machine
 	if velocity == Vector2.ZERO:
 		anim_tree["parameters/Idle/blend_position"] = anim_tree["parameters/Move/blend_position"]
-		anim_state_machine.travel("Idle")
+		anim_playback.travel("Idle")
 	else:
 		anim_tree["parameters/Move/blend_position"] = anim_direction
-		anim_state_machine.travel("Move")
+		anim_playback.travel("Move")
 
 
 func _physics_process(_delta):
