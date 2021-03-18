@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/beast_alert_1.wav-814b9699d642c5534a8f73aed2463bf3.sample"
+
+[deps]
+
+source_file="res://assets/characters/beast/sounds/alerted/beast_alert_1.wav"
+dest_files=[ "res://.import/beast_alert_1.wav-814b9699d642c5534a8f73aed2463bf3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

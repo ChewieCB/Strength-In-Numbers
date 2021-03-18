@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Beast  Growl.wav-6ce0afe6ea6e56a6b88398767d46f713.sample"
+
+[deps]
+
+source_file="res://assets/characters/beast/sounds/growl/Beast  Growl.wav"
+dest_files=[ "res://.import/Beast  Growl.wav-6ce0afe6ea6e56a6b88398767d46f713.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

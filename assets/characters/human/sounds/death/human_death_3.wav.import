@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/human_death_3.wav-63c51670c391a38ed167d03576854ac5.sample"
+
+[deps]
+
+source_file="res://assets/characters/human/sounds/death/human_death_3.wav"
+dest_files=[ "res://.import/human_death_3.wav-63c51670c391a38ed167d03576854ac5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

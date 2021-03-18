@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Beast  Death_3.wav-961d06f66b0143c396bbe2f14de2525d.sample"
+
+[deps]
+
+source_file="res://assets/characters/beast/sounds/death/Beast  Death_3.wav"
+dest_files=[ "res://.import/Beast  Death_3.wav-961d06f66b0143c396bbe2f14de2525d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

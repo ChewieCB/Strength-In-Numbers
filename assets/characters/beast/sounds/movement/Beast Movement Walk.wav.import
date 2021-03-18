@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Beast Movement Walk.wav-df8fe6c5baf0649093bcb5b7a3506835.sample"
+
+[deps]
+
+source_file="res://assets/characters/beast/sounds/movement/Beast Movement Walk.wav"
+dest_files=[ "res://.import/Beast Movement Walk.wav-df8fe6c5baf0649093bcb5b7a3506835.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

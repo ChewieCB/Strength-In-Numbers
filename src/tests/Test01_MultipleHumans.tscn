@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/characters/human/Human.tscn" type="PackedScene" id=1]
+
+[node name="TestMultipleHumans" type="Node2D"]
+
+[node name="SceneCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.25, 0.25 )
+
+[node name="Human" parent="." instance=ExtResource( 1 )]
+position = Vector2( -49.248, 19.3625 )
+
+[node name="Human2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 9.55128, 20.4761 )
+
+[node name="Human3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -18.7347, 45.8667 )
+
+[node name="Human4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 15.3421, 57.6711 )
+
+[node name="Human5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 48.7508, 41.4122 )
+
+[node name="Human6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 46.5236, 3.99446 )
+
+[node name="Human7" parent="." instance=ExtResource( 1 )]
+position = Vector2( -12.4984, -4.46907 )
+
+[node name="Human8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -50.3616, -8.70084 )

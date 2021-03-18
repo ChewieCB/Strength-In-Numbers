@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Beast  Hurt_2.wav-bc5621ed8f9c5dd0b59d1b399ea1c5d4.sample"
+
+[deps]
+
+source_file="res://assets/characters/beast/sounds/hurt/Beast  Hurt_2.wav"
+dest_files=[ "res://.import/Beast  Hurt_2.wav-bc5621ed8f9c5dd0b59d1b399ea1c5d4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

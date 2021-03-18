@@ -1,405 +1,410 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://assets/characters/human/spritesheet_no_shirt.png" type="Texture" id=1]
 [ext_resource path="res://assets/characters/human/spritesheet_shirt_only.png" type="Texture" id=2]
+[ext_resource path="res://src/fsm/StateMachine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/fsm/states/IdleState.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/fsm/states/FollowState.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/fsm/states/ControlledState.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/characters/human/human.gd" type="Script" id=7]
+[ext_resource path="res://assets/ui/selector/selector0.png" type="Texture" id=8]
+[ext_resource path="res://src/characters/human/moodles/Moodle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/characters/gibs/gib.png" type="Texture" id=10]
+[ext_resource path="res://assets/characters/gibs/blood_particle.png" type="Texture" id=11]
+[ext_resource path="res://src/fsm/states/DeathState.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/characters/human/sounds/death/human_death_1.wav" type="AudioStream" id=13]
 
-[sub_resource type="Animation" id=26]
-resource_name = "idle_e"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 136 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 136 ]
-}
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.08453, 2.94054 )
 
-[sub_resource type="Animation" id=23]
-resource_name = "idle_n"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 88 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 88 ]
-}
+[sub_resource type="CircleShape2D" id=2]
 
-[sub_resource type="Animation" id=25]
-resource_name = "idle_ne"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 114 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 114 ]
-}
-
-[sub_resource type="Animation" id=24]
-resource_name = "idle_nw"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 66 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 66 ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "idle_s"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=27]
-resource_name = "idle_se"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 158 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 158 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "idle_sw"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 22 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 22 ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "idle_w"
-length = 0.1
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 44 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 44 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "move_e"
-length = 0.6
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 132, 134, 136, 138, 140, 142 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 132, 134, 136, 138, 140, 142 ]
-}
+[sub_resource type="CircleShape2D" id=3]
+radius = 5.0
 
 [sub_resource type="Animation" id=4]
-resource_name = "move_n"
-length = 0.6
+length = 0.1
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
+tracks/0/path = NodePath("Sprites/Shirt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 88, 90, 92, 94, 96, 98 ]
+"values": [ 136 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
+tracks/1/path = NodePath("Sprites/Body:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 88, 90, 92, 94, 96, 98 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "move_ne"
-length = 0.6
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 110, 112, 114, 116, 118, 120 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 110, 112, 114, 116, 118, 120 ]
+"values": [ 136 ]
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "move_nw"
-length = 0.6
+length = 0.1
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
+tracks/0/path = NodePath("Sprites/Shirt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 66, 68, 70, 72, 74, 76 ]
+"values": [ 88 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
+tracks/1/path = NodePath("Sprites/Body:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 66, 68, 70, 72, 74, 76 ]
+"values": [ 88 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "move_s"
-length = 0.6
+[sub_resource type="Animation" id=6]
+length = 0.1
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
+tracks/0/path = NodePath("Sprites/Shirt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 2, 4, 6, 8, 10 ]
+"values": [ 114 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
+tracks/1/path = NodePath("Sprites/Body:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 2, 4, 6, 8, 10 ]
+"values": [ 114 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 66 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 66 ]
 }
 
 [sub_resource type="Animation" id=8]
-resource_name = "move_se"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 158 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 158 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 22 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 22 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 44 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 44 ]
+}
+
+[sub_resource type="Animation" id=12]
 length = 0.6
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 132, 134, 136, 138, 140, 142 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 132, 134, 136, 138, 140, 142 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 88, 90, 92, 94, 96, 98 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 88, 90, 92, 94, 96, 98 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 110, 112, 114, 116, 118, 120 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 110, 112, 114, 116, 118, 120 ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 66, 68, 70, 72, 74, 76 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 66, 68, 70, 72, 74, 76 ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 4, 6, 8, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 4, 6, 8, 10 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Shirt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -411,7 +416,7 @@ tracks/0/keys = {
 "values": [ 154, 156, 158, 160, 162, 164 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
+tracks/1/path = NodePath("Sprites/Body:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -423,13 +428,12 @@ tracks/1/keys = {
 "values": [ 154, 156, 158, 160, 162, 164 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "move_sw"
+[sub_resource type="Animation" id=18]
 length = 0.6
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
+tracks/0/path = NodePath("Sprites/Shirt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -441,7 +445,7 @@ tracks/0/keys = {
 "values": [ 22, 24, 26, 28, 30, 32 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
+tracks/1/path = NodePath("Sprites/Body:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -453,13 +457,12 @@ tracks/1/keys = {
 "values": [ 22, 24, 26, 28, 30, 32 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "move_w"
+[sub_resource type="Animation" id=19]
 length = 0.6
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Shirt:frame")
+tracks/0/path = NodePath("Sprites/Shirt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -471,7 +474,7 @@ tracks/0/keys = {
 "values": [ 44, 46, 48, 50, 52, 54 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body:frame")
+tracks/1/path = NodePath("Sprites/Body:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -483,152 +486,302 @@ tracks/1/keys = {
 "values": [ 44, 46, 48, 50, 52, 54 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "idle_n"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "idle_ne"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "idle_e"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "idle_se"
 
-[sub_resource type="AnimationNodeAnimation" id=32]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "idle_s"
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "idle_sw"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "idle_w"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "idle_nw"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=36]
-blend_point_0/node = SubResource( 28 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=28]
+blend_point_0/node = SubResource( 20 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 29 )
+blend_point_1/node = SubResource( 21 )
 blend_point_1/pos = Vector2( 1, 1 )
-blend_point_2/node = SubResource( 30 )
+blend_point_2/node = SubResource( 22 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 31 )
+blend_point_3/node = SubResource( 23 )
 blend_point_3/pos = Vector2( 1, -1 )
-blend_point_4/node = SubResource( 32 )
+blend_point_4/node = SubResource( 24 )
 blend_point_4/pos = Vector2( 0, -1 )
-blend_point_5/node = SubResource( 33 )
+blend_point_5/node = SubResource( 25 )
 blend_point_5/pos = Vector2( -1, -1 )
-blend_point_6/node = SubResource( 34 )
+blend_point_6/node = SubResource( 26 )
 blend_point_6/pos = Vector2( -1, 0 )
-blend_point_7/node = SubResource( 35 )
+blend_point_7/node = SubResource( 27 )
 blend_point_7/pos = Vector2( -1, 1 )
 snap = Vector2( 0.1, 1 )
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "move_n"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=30]
 animation = "move_e"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=31]
 animation = "move_s"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=32]
 animation = "move_w"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=33]
 animation = "move_nw"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=34]
 animation = "move_ne"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "move_se"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "move_sw"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=22]
-blend_point_0/node = SubResource( 14 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=37]
+blend_point_0/node = SubResource( 29 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 15 )
+blend_point_1/node = SubResource( 30 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 16 )
+blend_point_2/node = SubResource( 31 )
 blend_point_2/pos = Vector2( 0, -1 )
-blend_point_3/node = SubResource( 17 )
+blend_point_3/node = SubResource( 32 )
 blend_point_3/pos = Vector2( -1, 0 )
-blend_point_4/node = SubResource( 18 )
+blend_point_4/node = SubResource( 33 )
 blend_point_4/pos = Vector2( -1, 1 )
-blend_point_5/node = SubResource( 19 )
+blend_point_5/node = SubResource( 34 )
 blend_point_5/pos = Vector2( 1, 1 )
-blend_point_6/node = SubResource( 20 )
+blend_point_6/node = SubResource( 35 )
 blend_point_6/pos = Vector2( 1, -1 )
-blend_point_7/node = SubResource( 21 )
+blend_point_7/node = SubResource( 36 )
 blend_point_7/pos = Vector2( -1, -1 )
 snap = Vector2( 0.01, 1 )
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
 
-[sub_resource type="AnimationNodeStateMachine" id=9]
-states/Idle/node = SubResource( 36 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachine" id=40]
+states/Idle/node = SubResource( 28 )
 states/Idle/position = Vector2( 163, 117 )
-states/Move/node = SubResource( 22 )
+states/Move/node = SubResource( 37 )
 states/Move/position = Vector2( 357, 98 )
-transitions = [ "Idle", "Move", SubResource( 37 ), "Move", "Idle", SubResource( 38 ) ]
+transitions = [ "Idle", "Move", SubResource( 38 ), "Move", "Idle", SubResource( 39 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
-[sub_resource type="CircleShape2D" id=39]
+[sub_resource type="CircleShape2D" id=42]
 
-[node name="Human" type="Node2D"]
+[sub_resource type="CanvasItemMaterial" id=43]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 3
+particles_anim_loop = false
 
-[node name="Shirt" type="Sprite" parent="."]
+[sub_resource type="ParticlesMaterial" id=44]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 53.91
+initial_velocity_random = 0.24
+angular_velocity = 171.9
+angular_velocity_random = 0.97
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 43.88
+damping = 100.0
+angle = 159.4
+angle_random = 1.0
+scale_random = 0.4
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=45]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=46]
+lifetime_randomness = 0.39
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 1.0
+angular_velocity = 195.97
+angular_velocity_random = 0.55
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+scale = 0.8
+scale_random = 1.0
+hue_variation = 1.0
+
+[node name="Human" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 7 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="StateMachine" parent="." instance=ExtResource( 3 )]
+
+[node name="IdleState" parent="StateMachine/States" index="0" instance=ExtResource( 4 )]
+
+[node name="ControlledState" parent="StateMachine/States" index="1" instance=ExtResource( 6 )]
+
+[node name="FollowState" parent="StateMachine/States" index="2" instance=ExtResource( 5 )]
+
+[node name="DeathState" parent="StateMachine/States" index="3" instance=ExtResource( 12 )]
+
+[node name="RecruitRadius" type="Area2D" parent="."]
+position = Vector2( 0.132435, -0.0662165 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RecruitRadius"]
+shape = SubResource( 2 )
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Selector" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 0, 3 )
+scale = Vector2( 1.3, 1.1 )
+texture = ExtResource( 8 )
+
+[node name="Shirt" type="Sprite" parent="Sprites"]
 texture = ExtResource( 2 )
 vframes = 15
 hframes = 11
-frame = 158
 region_enabled = true
 region_rect = Rect2( 4, 4, 88, 120 )
 
-[node name="Body" type="Sprite" parent="."]
+[node name="Body" type="Sprite" parent="Sprites"]
 texture = ExtResource( 1 )
 vframes = 15
 hframes = 11
-frame = 158
 region_enabled = true
 region_rect = Rect2( 4, 4, 88, 120 )
 
+[node name="SelectorArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectorArea"]
+shape = SubResource( 3 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle_e = SubResource( 26 )
-anims/idle_n = SubResource( 23 )
-anims/idle_ne = SubResource( 25 )
-anims/idle_nw = SubResource( 24 )
-anims/idle_s = SubResource( 11 )
-anims/idle_se = SubResource( 27 )
-anims/idle_sw = SubResource( 12 )
-anims/idle_w = SubResource( 13 )
-anims/move_e = SubResource( 7 )
-anims/move_n = SubResource( 4 )
-anims/move_ne = SubResource( 6 )
-anims/move_nw = SubResource( 5 )
-anims/move_s = SubResource( 1 )
-anims/move_se = SubResource( 8 )
-anims/move_sw = SubResource( 2 )
-anims/move_w = SubResource( 3 )
+anims/idle_e = SubResource( 4 )
+anims/idle_n = SubResource( 5 )
+anims/idle_ne = SubResource( 6 )
+anims/idle_nw = SubResource( 7 )
+anims/idle_s = SubResource( 8 )
+anims/idle_se = SubResource( 9 )
+anims/idle_sw = SubResource( 10 )
+anims/idle_w = SubResource( 11 )
+anims/move_e = SubResource( 12 )
+anims/move_n = SubResource( 13 )
+anims/move_ne = SubResource( 14 )
+anims/move_nw = SubResource( 15 )
+anims/move_s = SubResource( 16 )
+anims/move_se = SubResource( 17 )
+anims/move_sw = SubResource( 18 )
+anims/move_w = SubResource( 19 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 9 )
+tree_root = SubResource( 40 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 10 )
+parameters/playback = SubResource( 41 )
 parameters/Idle/blend_position = Vector2( 1.00773, -1.07836 )
 parameters/Move/blend_position = Vector2( -0.00154561, 1.04851 )
 
 [node name="NoGoZone" type="Area2D" parent="."]
+modulate = Color( 100, 0, 0, 0.81 )
+self_modulate = Color( 1, 0, 0, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoGoZone"]
-shape = SubResource( 39 )
+shape = SubResource( 42 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 0.25, 0.25 )
+
+[node name="Moodle" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, -8 )
+
+[node name="StateLabel" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.53
+anchor_right = 0.5
+anchor_bottom = 0.578
+margin_left = -33.0
+margin_top = 7.0
+margin_right = 33.0
+margin_bottom = 7.0
+text = "StateLabel"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GibEmitter" type="Particles2D" parent="."]
+material = SubResource( 43 )
+scale = Vector2( 0.25, 0.25 )
+emitting = false
+amount = 1
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.82
+visibility_rect = Rect2( -10, -10, 20, 20 )
+process_material = SubResource( 44 )
+texture = ExtResource( 10 )
+
+[node name="BloodEmitter" type="Particles2D" parent="."]
+material = SubResource( 45 )
+position = Vector2( 0.148651, 0 )
+scale = Vector2( 0.05, 0.05 )
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.53
+randomness = 0.31
+visibility_rect = Rect2( -10, -10, 20, 20 )
+process_material = SubResource( 46 )
+texture = ExtResource( 11 )
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+volume_db = 12.0
+
+[node name="ScentTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+[connection signal="body_entered" from="RecruitRadius" to="." method="_on_RecruitRadius_body_entered"]
+[connection signal="body_exited" from="RecruitRadius" to="." method="_on_RecruitRadius_body_exited"]
+[connection signal="mouse_entered" from="SelectorArea" to="." method="_on_SelectorArea_mouse_entered"]
+[connection signal="mouse_exited" from="SelectorArea" to="." method="_on_SelectorArea_mouse_exited"]
+[connection signal="animation_finished" from="Moodle/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="StateMachine"]
+
+[editable path="Moodle"]

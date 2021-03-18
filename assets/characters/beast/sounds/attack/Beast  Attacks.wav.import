@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Beast  Attacks.wav-0f738aa2b52b89939ebcaa90015e2d9e.sample"
+
+[deps]
+
+source_file="res://assets/characters/beast/sounds/attack/Beast  Attacks.wav"
+dest_files=[ "res://.import/Beast  Attacks.wav-0f738aa2b52b89939ebcaa90015e2d9e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
