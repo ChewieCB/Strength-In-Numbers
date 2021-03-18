@@ -209,3 +209,10 @@ func _on_RecruitRadius_body_exited(body):
 		not body.is_in_group("controlled_characters"):
 			body.get_node("Moodle/AnimationPlayer").play("recruitable_fadeout")
 
+
+
+func _on_KillZone_body_entered(body):
+	if body in get_tree().get_nodes_in_group("beasts"):
+		for scent in scent_trail:
+			scent.queue_free()
+		queue_free()
