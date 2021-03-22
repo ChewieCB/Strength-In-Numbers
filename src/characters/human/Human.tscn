@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://assets/characters/human/spritesheet_no_shirt.png" type="Texture" id=1]
 [ext_resource path="res://assets/characters/human/spritesheet_shirt_only.png" type="Texture" id=2]
@@ -582,6 +582,7 @@ states/Idle/position = Vector2( 163, 117 )
 states/Move/node = SubResource( 37 )
 states/Move/position = Vector2( 357, 98 )
 transitions = [ "Idle", "Move", SubResource( 38 ), "Move", "Idle", SubResource( 39 ) ]
+start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
@@ -633,6 +634,9 @@ scale = 0.8
 scale_random = 1.0
 hue_variation = 1.0
 
+[sub_resource type="CircleShape2D" id=47]
+radius = 5.0
+
 [node name="Human" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 5
@@ -670,6 +674,7 @@ texture = ExtResource( 8 )
 texture = ExtResource( 2 )
 vframes = 15
 hframes = 11
+frame = 158
 region_enabled = true
 region_rect = Rect2( 4, 4, 88, 120 )
 
@@ -677,6 +682,7 @@ region_rect = Rect2( 4, 4, 88, 120 )
 texture = ExtResource( 1 )
 vframes = 15
 hframes = 11
+frame = 158
 region_enabled = true
 region_rect = Rect2( 4, 4, 88, 120 )
 
@@ -776,11 +782,19 @@ wait_time = 0.1
 autostart = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="KillZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource( 47 )
 [connection signal="body_entered" from="RecruitRadius" to="." method="_on_RecruitRadius_body_entered"]
 [connection signal="body_exited" from="RecruitRadius" to="." method="_on_RecruitRadius_body_exited"]
 [connection signal="mouse_entered" from="SelectorArea" to="." method="_on_SelectorArea_mouse_entered"]
 [connection signal="mouse_exited" from="SelectorArea" to="." method="_on_SelectorArea_mouse_exited"]
 [connection signal="animation_finished" from="Moodle/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="KillZone" to="." method="_on_KillZone_body_entered"]
 
 [editable path="StateMachine"]
 

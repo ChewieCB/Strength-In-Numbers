@@ -13,7 +13,7 @@ func enter(entity, _optional_args=null):
 	# Stop any movement
 	entity.velocity = Vector2.ZERO
 	# Play the idle animation
-	entity.anim_tree["parameters/playback"].travel("Idle")
+	entity.anim_playback.travel("Idle")
 
 func handle_input(entity, _delta):
 	var states_node = entity.get_node("StateMachine/States")

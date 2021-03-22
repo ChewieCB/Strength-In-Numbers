@@ -6,7 +6,7 @@
 
 [node name="TestBeastAI" type="Node2D"]
 
-[node name="Ruins" parent="." instance=ExtResource( 1 )]
+[node name="TileMap" parent="." instance=ExtResource( 1 )]
 
 [node name="Humans" type="Node2D" parent="."]
 
@@ -54,12 +54,14 @@ position = Vector2( 152.508, 295.848 )
 
 [node name="Beast1" parent="Beasts" instance=ExtResource( 3 )]
 position = Vector2( 344.238, 117.363 )
+movement_speed = 50
 
 [node name="Beast2" parent="Beasts" instance=ExtResource( 3 )]
 position = Vector2( 191.738, 174.113 )
+HOME_RADIUS = 64
 
 [node name="Beast3" parent="Beasts" instance=ExtResource( 3 )]
-position = Vector2( 136.238, 213.363 )
+position = Vector2( 136.436, 213.165 )
 
 [node name="Beast4" parent="Beasts" instance=ExtResource( 3 )]
 position = Vector2( 244.238, 211.863 )
